@@ -9,19 +9,41 @@
     <title>Library</title>
 </head>
 <body>
+    
     <div class="main-container">
         <div class="header">
             <h1>library</h1>
         </div>
         <div class="library-container">
-            <div class="add-button"><button class="button-style">+ Add Book</button></div>
+            <!-- <section class="modal hidden">
+                <div class="modal-container">
+                    <div class="modal-header">
+                        <h3>Add a New Book</h3>
+                        <button class="btn-close">X</button>
+                    </div>
+                    <div class="modal-form">
+                        <p>Title</p><input type="text" name="title" id="title" placeholder="The Divine Comedy">
+                        <p>Author</p><input type="text" name="author" id="author" placeholder="Dante Alighieri">
+                        <div class="flex">
+                            <p>Pages</p><input type="number" name="pages" id="pages" placeholder="798">
+                        </div>
+                        <div class="flex">
+                            <p>Read Yet?</p><input type="checkbox" name="read" id="read">
+                        </div>
+                        <button>Submit</button>
+                    </div>
+                </div>
+            </section> -->
+        <!-- </div> -->
+        <!-- <div class="overlay hidden"></div> -->
+            <div class="add-button"><button class="button-style btn-open">+ Add Book</button></div>
             <div class="book-container">
                 <div class="card">
                     <p>"Harry Potter and the Prisoner of Azkoban"</p>
                     <p>J.K. Rowling</p>
                     <p>355 Pages</p>
                     <div class="card-buttons">
-                        <button id="read" class="mark-read button-style" value="read">READ</button>
+                        <button id="read-btn" class="mark-read button-style" value="read">READ</button>
                         <button class="remove button-style">Remove</button>
                     </div>
                 </div>

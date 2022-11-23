@@ -1,19 +1,17 @@
 let myLibrary = [];
 
 function Book(title, author, pages, read) {
-    self.title = title;
-    self.author = author;
-    self.pages = pages;
-    self.read = read;
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
 }
 
 function addBook() {
 
 }
 
-
-
-const readBtn = document.querySelectorAll('#read');
+const readBtn = document.querySelectorAll('#read-btn');
 // changes button between READ and NOT READ states
 readBtn.forEach((button) => {
     button.addEventListener('click', () => {
@@ -29,3 +27,19 @@ readBtn.forEach((button) => {
         }
     })
 })
+
+// button to prompt for input
+const formBtn = document.querySelector(".btn-open");
+formBtn.addEventListener('click', () => {
+    formPrompt();
+    console.log(myLibrary);
+})
+
+function formPrompt() {
+    let title = prompt("Book Title: ");
+    let author = prompt("Author: ");
+    let pages = prompt("Pages: ");
+    const newBook = new Book(title, author, pages, false);
+    myLibrary.unshift(newBook);
+}
+
