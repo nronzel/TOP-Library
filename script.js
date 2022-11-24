@@ -7,15 +7,26 @@ function Book(title, author, pages, read) {
     this.read = read;
 }
 
-// function addBook() {
-//     const newCard = document.createElement('div');
-//     const 
-//     console.log(newCard);
-// }
+const bookContainer = document.querySelector('.book-container')
 
+function addBook(book) {
+    const newCard = document.createElement('div');
+    const title = document.createElement('p');
+    const author = document.createElement('p')
+    const pages = document.createElement('p')
+    const buttonGroup = document.createElement('div')
+    const markRead = document.createElement('button')
+    const remove = document.createElement('button')
+
+    newCard.classList.add('card')
+    buttonGroup.classList.add('card-buttons')
+    markRead.classList.add('button-style')
+    remove.classList.add('button-style remove')
+}
+
+// changes button between READ and NOT READ states
 function markRead() {
     const readBtn = document.querySelectorAll('#read-btn');
-    // changes button between READ and NOT READ states
     readBtn.forEach((button) => {
         button.addEventListener('click', () => {
             const arr = Array.from(button.classList)
@@ -36,7 +47,7 @@ const modalCont = document.querySelector(".modal-container");
 const btnOpen = document.querySelector(".btn-open");
 const btnClose = document.querySelector(".btn-close");
 const overlay = document.querySelector(".overlay");
-// button to prompt for input
+
 function openModal() {
     modalCont.classList.add('active');
     overlay.classList.add('active');

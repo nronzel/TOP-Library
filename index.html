@@ -41,11 +41,39 @@
     <div class="modal-container">
         <div class="modal-content">
             <button class="btn-close">X</button>
-            <p>Title: </p><input type="text" name="title" id="title">
-            <p>Author: </p><input type="text" name="author" id="author">
-            <p>Pages: </p><input type="number" name="pages" id="pages">
-            <p>Read? </p><input type="checkbox" name="read-yet" id="read-yet">
-            <button class="modal-submit" type="submit" value="submit">Submit</button>
+            <form class="book-form" id="bookForm">
+                <input
+                    type="text"
+                    name="title"
+                    id="title"
+                    placeholder="Title"
+                    required
+                />
+                <input
+                    type="text"
+                    name="author"
+                    id="author"
+                    placeholder="Author"
+                    required
+                />
+                <input
+                    type="number"
+                    name="pages"
+                    id="pages"
+                    placeholder="Pages"
+                    required
+                />
+
+                <div class="read-box">
+                    <label for="read-yet">Read Already?</label>
+                    <input
+                        type="checkbox"
+                        name="read-yet"
+                        id="readYet"
+                    />
+                </div>
+                <button class="modal-submit" type="submit" value="submit">Submit</button>
+            </form>
         </div>
     </div>
     <div class="overlay"></div>

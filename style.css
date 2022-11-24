@@ -239,14 +239,40 @@ button.not-read:active {
     padding: 10px;
 }
 
-
 .btn-close {
     background: transparent;
     color: white;
     font-weight: 900;
-    width: 1.5rem;
+    width: 90%;
     border: none;
     cursor: pointer;
+    display: flex;
+    justify-content: flex-end;
+    gap: 1.5rem;
+}
+
+#bookForm {
+    text-align: center;
+}
+
+input#readYet {
+    width: 25px;
+    height: 25px;
+}
+
+input {
+    padding: .8rem;
+    margin: 5px;
+}
+
+label {
+    font-size: 1.2rem;
+}
+
+button.modal-submit {
+    padding: .5rem;
+    margin-top: 10px;
+    width: 60%;
 }
 
 .overlay {
