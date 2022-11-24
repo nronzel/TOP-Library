@@ -8,7 +8,10 @@ function Book(title, author, pages, read) {
 }
 
 function addBook() {
-
+    const newCard = document
+        .createElement('div')
+        .classList("card");
+    console.log(newCard);
 }
 
 const readBtn = document.querySelectorAll('#read-btn');
@@ -29,11 +32,12 @@ readBtn.forEach((button) => {
 })
 
 // button to prompt for input
-const formBtn = document.querySelector(".btn-open");
-formBtn.addEventListener('click', () => {
-    formPrompt();
-    console.log(myLibrary);
-})
+function buttonListen() {
+    const formBtn = document.querySelector(".btn-open");
+    formBtn.addEventListener('click', () => {
+        formPrompt();
+    })
+}
 
 function formPrompt() {
     let title = prompt("Book Title: ");
