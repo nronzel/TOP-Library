@@ -242,7 +242,6 @@ button.not-read:active {
 .btn-close {
     background: transparent;
     color: white;
-    font-weight: 900;
     font-size: 1.5rem;
     width: 90%;
     border: none;
