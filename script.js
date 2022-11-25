@@ -1,5 +1,14 @@
 let myLibrary = [];
 
+// adds index number to each object in array
+
+const addIndex = () => {
+    for(let i = 0; i < myLibrary.length;i++) {
+        myLibrary[i].index = i;
+    }
+    return myLibrary;
+}
+
 // constructor function to create book objects
 
 function Book(title="undefined", author="undefined", pages="0", read=false) {
@@ -21,9 +30,6 @@ const modalSubmit = document.querySelector(".modal-submit")
 // creates a new card
 
 const newBookCard = (book) => {
-
-    // selectors
-
     const newCard = document.createElement('div');
     const title = document.createElement('p');
     const author = document.createElement('p')
@@ -32,6 +38,7 @@ const newBookCard = (book) => {
     const markRead = document.createElement('button')
     const remove = document.createElement('button')
     
+    const readYet = document.getElementById('readYet').checked
 
     // adds classes
 
@@ -41,7 +48,7 @@ const newBookCard = (book) => {
     markRead.setAttribute('id', 'read-btn')
     remove.classList.add('remove', 'button-style')
 
-    const readYet = document.getElementById('readYet').checked
+    // if the checkbox is checked, mark book as read, otherwise not read
 
     if (readYet === true) {
         markRead.classList.add('mark-read')
@@ -52,8 +59,6 @@ const newBookCard = (book) => {
         markRead.textContent = 'NOT READ'
         markRead.setAttribute('value', 'not-read')
     }
-
-    console.log(markRead.value);
 
     // adds text content
 
@@ -72,6 +77,25 @@ const newBookCard = (book) => {
     newCard.appendChild(buttonGroup)
     bookContainer.appendChild(newCard)
 
+    const removeButton = document.querySelectorAll('.remove')
+
+    removeButton.forEach((button) => {
+        button.addEventListener('click', () => {
+            let index = myLibrary.indexOf(book);
+            console.log(index);
+            myLibrary.splice(index, 1);
+            updateDisplay();
+        })
+    })
+
+    // removeButton.forEach((button) => {
+    //     button.addEventListener('click', () => {
+    //         console.log(myLibrary.indexOf(book));
+    //     // myLibrary.pop()
+    // })
+
+    // changes the "mark read" button status from read to unread and vice versa
+
     const readBtn = document.querySelectorAll('#read-btn');
     readBtn.forEach((button) => {
         button.addEventListener('click', () => {
@@ -87,20 +111,21 @@ const newBookCard = (book) => {
             }
         });
     });
-
-    
 }
+
+// listens for click on the submit button on modal
 
 modalSubmit.addEventListener('click', (e) => {
     e.preventDefault();
     const newBook = getBookInput()
     myLibrary.push(newBook);
-    console.log(myLibrary);
     updateDisplay(newBook);
     closeModal();
+    addIndex();
+    console.log(myLibrary);
 })
 
-
+// gets the data input on the form
 
 const getBookInput = () => {
     const title = document.getElementById('title').value
@@ -110,25 +135,20 @@ const getBookInput = () => {
     return new Book(title, author, pages, read)
 }
 
+// remove book from library
 
+const removeBook = () => {
+    const title = document.getElementById('title').value
 
-const updateDisplay = (book) => {
-    newBookCard(book);
 }
 
+// updates book display
 
-
-
-
-
-
-
-
-// changes button between READ and NOT READ states
-
-
-
-
+const updateDisplay = () => {
+    for(let book of myLibrary) {
+        newBookCard(book);
+    }
+}
 
 // modal functionality 
 
@@ -146,4 +166,3 @@ const closeModal = () => {
 btnOpen.onclick = openModal;
 overlay.onclick = closeModal;
 btnClose.onclick = closeModal;
-// modalSubmit.onclick = addBook;
