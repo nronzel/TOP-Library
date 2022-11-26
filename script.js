@@ -1,13 +1,5 @@
 let myLibrary = [];
 
-// adds index number to each object in array
-
-const addIndex = () => {
-    for(let i = 0; i < myLibrary.length;i++) {
-        myLibrary[i].index = i;
-    }
-    return myLibrary;
-}
 
 // constructor function to create book objects
 
@@ -27,9 +19,11 @@ const btnClose = document.querySelector(".btn-close");
 const overlay = document.querySelector(".overlay");
 const modalSubmit = document.querySelector(".modal-submit")
 
+
 // creates a new card
 
 const newBookCard = (book) => {
+    const setIndex = myLibrary.length - 1;
     const newCard = document.createElement('div');
     const title = document.createElement('p');
     const author = document.createElement('p')
@@ -37,11 +31,14 @@ const newBookCard = (book) => {
     const buttonGroup = document.createElement('div')
     const markRead = document.createElement('button')
     const remove = document.createElement('button')
+
+    // console.log(getIndex);
     
     const readYet = document.getElementById('readYet').checked
 
-    // adds classes
+    // adds classes & ID
 
+    newCard.setAttribute('id', setIndex)
     newCard.classList.add('card')
     buttonGroup.classList.add('card-buttons')
     markRead.classList.add('button-style')
@@ -77,25 +74,35 @@ const newBookCard = (book) => {
     newCard.appendChild(buttonGroup)
     bookContainer.appendChild(newCard)
 
-    const removeButton = document.querySelectorAll('.remove')
-
-    removeButton.forEach((button) => {
-        button.addEventListener('click', () => {
-            let index = myLibrary.indexOf(book);
-            console.log(index);
-            myLibrary.splice(index, 1);
-            updateDisplay();
-        })
-    })
-
-    // removeButton.forEach((button) => {
-    //     button.addEventListener('click', () => {
-    //         console.log(myLibrary.indexOf(book));
-    //     // myLibrary.pop()
-    // })
-
     // changes the "mark read" button status from read to unread and vice versa
+    changeReadButton();
 
+    remove.onclick = removeBook
+}
+
+// listens for click on the submit button on modal
+
+modalSubmit.addEventListener('click', (e) => {
+    e.preventDefault();
+    const newBook = getBookInput()
+    myLibrary.push(newBook);
+    updateDisplay(newBook);
+    closeModal();
+    console.log(myLibrary);
+})
+
+// gets the data input on the form
+
+const getBookInput = () => {
+    const title = document.getElementById('title').value
+    const author = document.getElementById('author').value
+    const pages = document.getElementById('pages').value
+    const read = document.getElementById('readYet').checked
+    return new Book(title, author, pages, read)
+}
+
+// changes the Mark Read button status
+const changeReadButton = () => {
     const readBtn = document.querySelectorAll('#read-btn');
     readBtn.forEach((button) => {
         button.addEventListener('click', () => {
@@ -113,41 +120,22 @@ const newBookCard = (book) => {
     });
 }
 
-// listens for click on the submit button on modal
-
-modalSubmit.addEventListener('click', (e) => {
-    e.preventDefault();
-    const newBook = getBookInput()
-    myLibrary.push(newBook);
-    updateDisplay(newBook);
-    closeModal();
-    addIndex();
-    console.log(myLibrary);
-})
-
-// gets the data input on the form
-
-const getBookInput = () => {
-    const title = document.getElementById('title').value
-    const author = document.getElementById('author').value
-    const pages = document.getElementById('pages').value
-    const read = document.getElementById('readYet').checked
-    return new Book(title, author, pages, read)
-}
-
 // remove book from library
 
 const removeBook = () => {
-    const title = document.getElementById('title').value
+    const removeBtn = document.querySelector(".remove")
 
+    removeBtn.parentElement.parentElement.outerHTML = ""
+
+
+
+    myLibrary.splice(this.title, 1)
 }
 
 // updates book display
 
-const updateDisplay = () => {
-    for(let book of myLibrary) {
-        newBookCard(book);
-    }
+const updateDisplay = (book) => {
+    newBookCard(book);
 }
 
 // modal functionality 
