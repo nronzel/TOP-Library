@@ -16,7 +16,7 @@ class Library {
   }
 
   removeBook(title) {
-    this.books = this.books.filter((book) => book.title !== title);
+    return this.books = this.books.filter((book) => book.title !== title);
   }
 
   isInLibrary(newBook) {
