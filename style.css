@@ -243,7 +243,6 @@ button.not-read:active {
     background: transparent;
     color: white;
     font-size: 1.5rem;
-    width: 90%;
     border: none;
     cursor: pointer;
     display: flex;
@@ -298,4 +297,10 @@ button.modal-submit {
 
 .overlay.active {
     display: block;
+}
+
+.modal-close {
+    display: flex;
+    justify-content: flex-end;
+    width: 90%;
 }
